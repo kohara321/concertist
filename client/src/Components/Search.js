@@ -1,8 +1,17 @@
 
+function Search({searchSubmit, handleChange}){
 
-function Search(){
     return(
-        <h1>Search Page</h1>
+        <div id="search-page" onSubmit={e => searchSubmit(e)}>
+            <form id="search-form">
+                <div id="search-bar">
+                    <input id="search" type="text" placeholder="Search" onChange={e => handleChange(e.target.value)} />
+                </div>
+                <div id="search-btns">
+                    <button type="submit" id="search-btn">Search</button>
+                </div>
+            </form>
+        </div>
     )
 }
 

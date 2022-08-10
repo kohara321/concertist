@@ -1,4 +1,4 @@
-import {Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink} from './NavBarElements'; 
+import {Nav, NavLink, Bars, NavMenu, NavBtnLink} from './NavBarElements'; 
 import {GiMusicalNotes} from 'react-icons/gi';
 
 function NavBar(){
@@ -15,9 +15,6 @@ function NavBar(){
                     </NavLink>
                     <NavLink to="/my_posts" activeStyle>
                         My Posts
-                    </NavLink>
-                    <NavLink to="/about" activeStyle>
-                        About
                     </NavLink>
                     <NavLink to="/login">
                         <NavBtnLink to="/login">Sign in</NavBtnLink>

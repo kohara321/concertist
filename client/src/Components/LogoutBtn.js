@@ -3,7 +3,7 @@ import { GoogleLogout } from "react-google-login";
 const clientId = "642741965839-n4f0rl2hcrfgg1fg15ea75q3f2cdgek7.apps.googleusercontent.com"
 
 
-function Logout() {
+function LogoutBtn() {
 
     const onSuccess = () => {
         console.log("Log out successfull!")
@@ -20,4 +20,4 @@ function Logout() {
     )
 }
 
-export default Logout;
+export default LogoutBtn;
