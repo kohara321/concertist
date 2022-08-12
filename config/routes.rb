@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
-  get '/hello', to: 'application#hello_world'
+  resources :accounts
+  resources :comments
+  resources :performances
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

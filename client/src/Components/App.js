@@ -1,7 +1,6 @@
-import { gapi } from 'gapi-script';
 import './app.css'
 import { useState, useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import NavBar from "./NavBar";
 import Home from "./Home"
 import Search from "./Search"
@@ -9,23 +8,35 @@ import Posts from "./Posts"
 import LoginPage from "./LoginPage"
 import CreateUser from "./CreateUser";
 import SongDetails from './SongDetails';
-
-const clientId = "642741965839-n4f0rl2hcrfgg1fg15ea75q3f2cdgek7.apps.googleusercontent.com"
+import jwt_decode from "jwt-decode"
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("mozart")
   const [searchInput, setSearchInput] = useState("")
   const [songs, setSongs] = useState([])
+  const [user, setUser] = useState({})
 
   useEffect(() => {
-    function start() {
-      gapi.client.init({
-        clientId: clientId,
-        scope: ""
-      })
-    };
-    gapi.load('client:auth2', start);
-  });
+    let account = window.localStorage.getItem("USER_OBJ")
+    setUser(JSON.parse(account))
+  }, [])
+
+  let history = useHistory();
+  function handleCallbackResponse(response) {
+      var userObject = jwt_decode(response.credential);
+      setUser(userObject)
+      document.getElementById("signInDiv").hidden = true
+      window.localStorage.setItem("USER_OBJ", JSON.stringify(userObject))
+      history.push('/search')
+    }
+
+    console.log(user)
+  
+    function handleSignOut(e){
+      window.localStorage.setItem("USER_OBJ", JSON.stringify({}))
+      setUser({})
+      document.getElementById("signInDiv").hidden = false
+    }
 
   useEffect(() =>{
     fetch(`https://api.openopus.org/omnisearch/${searchTerm}/0.json`)
@@ -44,10 +55,13 @@ function App() {
 
   return (
     <div className="App">
+      {user && 
+        <h2>{user.name}</h2>
+      }
       <NavBar />
       <Switch>
         <Route exact path="/">
-          <Home />
+          <Home user={user} />
         </Route>
         <Route path="/search">
           <Search searchSubmit={searchSubmit} handleChange={handleChange} songs={songs} />
@@ -57,7 +71,7 @@ function App() {
           <Posts />
         </Route>
         <Route path="/login">
-          <LoginPage />
+          <LoginPage handleCallbackResponse={handleCallbackResponse} handleSignOut={handleSignOut} user={user} setUser={setUser} />
         </Route>
         <Route path="/new_user">
           <CreateUser />
