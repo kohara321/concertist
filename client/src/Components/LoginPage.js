@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useHistory} from "react-router-dom";
 
-function Login({handleCallbackResponse, handleSignOut, user}){
+function Login({handleCallbackResponse, user}){
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     
@@ -29,17 +29,6 @@ function Login({handleCallbackResponse, handleSignOut, user}){
 
     return(
         <>
-        <div id="signInDiv"></div>
-        {
-          Object.keys(user).length !== 0 &&
-          <button onClick={ (e) => handleSignOut(e)}>Sign Out</button>
-        }
-        { user &&
-        <div>
-          <img src={user.picture} />
-          <h3>{user.name}</h3>
-        </div>
-        }
         <form id="login-form" onSubmit={handleSubmit}>
             <h1 id="login-header">Login to Your Account</h1>
             <div className="form-group">
@@ -52,6 +41,17 @@ function Login({handleCallbackResponse, handleSignOut, user}){
                 <button type="submit" id="login-btn">Login</button>
                 <button type="button" id="signup-btn" onClick={nav} >Sign Up</button>
             </div>
+            <div id="signInDiv"></div>
+        {
+          Object.keys(user).length !== 0 &&
+          <h3>Logged in as:</h3>
+        }
+        { user &&
+        <div>
+          <img src={user.picture} alt=""/>
+          <h3>{user.name}</h3>
+        </div>
+        }
         </form>
         </>
     )

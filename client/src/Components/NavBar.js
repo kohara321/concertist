@@ -1,7 +1,7 @@
 import {Nav, NavLink, Bars, NavMenu, NavBtnLink} from './NavBarElements'; 
 import {GiMusicalNotes} from 'react-icons/gi';
 
-function NavBar(){
+function NavBar({loggedIn, handleSignOut}){
     return(
         <>
             <Nav>
@@ -17,7 +17,11 @@ function NavBar(){
                         My Posts
                     </NavLink>
                     <NavLink to="/login">
-                        <NavBtnLink to="/login">Sign in</NavBtnLink>
+                        {loggedIn === false ? 
+                            <NavBtnLink to="/login">Sign in</NavBtnLink> 
+                            : 
+                            <NavBtnLink to="/login" onClick={handleSignOut}>Sign out</NavBtnLink>
+                        }
                     </NavLink>
                 </NavMenu>
             </Nav>

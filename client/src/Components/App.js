@@ -5,6 +5,8 @@ import NavBar from "./NavBar";
 import Home from "./Home"
 import Search from "./Search"
 import Posts from "./Posts"
+import PerformancePage from './PerformancePage';
+import NewPerformance from './NewPerformance';
 import LoginPage from "./LoginPage"
 import CreateUser from "./CreateUser";
 import SongDetails from './SongDetails';
@@ -15,27 +17,38 @@ function App() {
   const [searchInput, setSearchInput] = useState("")
   const [songs, setSongs] = useState([])
   const [user, setUser] = useState({})
+  const [loggedIn, setLoggedIn] = useState(false)
 
   useEffect(() => {
     let account = window.localStorage.getItem("USER_OBJ")
+    let status = window.localStorage.getItem("LOGIN_STATUS")
     setUser(JSON.parse(account))
+    setLoggedIn(status)
   }, [])
 
   let history = useHistory();
   function handleCallbackResponse(response) {
-      var userObject = jwt_decode(response.credential);
+      let userObject = jwt_decode(response.credential);
       setUser(userObject)
       document.getElementById("signInDiv").hidden = true
       window.localStorage.setItem("USER_OBJ", JSON.stringify(userObject))
+      window.localStorage.setItem("LOGIN_STATUS", true)
+      setLoggedIn(true)
+      
+      // fetch(`http://localhost:3000/email?email=${userObject.email}`)
+      // .then(res => res.json())
+      // .then(data => console.log(data))
       history.push('/search')
     }
 
     console.log(user)
+    // console.log(loggedIn)
   
     function handleSignOut(e){
       window.localStorage.setItem("USER_OBJ", JSON.stringify({}))
+      window.localStorage.setItem("LOGIN_STATUS", false)
       setUser({})
-      document.getElementById("signInDiv").hidden = false
+      setLoggedIn(false)
     }
 
   useEffect(() =>{
@@ -58,7 +71,7 @@ function App() {
       {user && 
         <h2>{user.name}</h2>
       }
-      <NavBar />
+      <NavBar loggedIn={loggedIn} handleSignOut={handleSignOut} />
       <Switch>
         <Route exact path="/">
           <Home user={user} />
@@ -69,6 +82,12 @@ function App() {
         </Route>
         <Route path="/my_posts">
           <Posts />
+        </Route> 
+        <Route path="/performances" >
+          <PerformancePage />
+        </Route>
+        <Route path="/new_post" >
+          <NewPerformance />
         </Route>
         <Route path="/login">
           <LoginPage handleCallbackResponse={handleCallbackResponse} handleSignOut={handleSignOut} user={user} setUser={setUser} />
