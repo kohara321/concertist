@@ -11,9 +11,7 @@ function SongDetails({songs}){
         )
     })
 
-    console.log("songs:", songs)
-    // console.log("pieces:", songs.map(song => song.work))
-    // console.log("composers:", songs.map(song => song.composer))
+    // console.log("songs:", songs)
 
     return(
         <div>

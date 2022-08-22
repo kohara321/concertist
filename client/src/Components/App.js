@@ -35,9 +35,30 @@ function App() {
       window.localStorage.setItem("LOGIN_STATUS", true)
       setLoggedIn(true)
       
-      // fetch(`http://localhost:3000/email?email=${userObject.email}`)
-      // .then(res => res.json())
-      // .then(data => console.log(data))
+      fetch(`/email?email=${userObject.email}`)
+      .then(res => res.json())
+      .then((data) => {
+        if (data === null) {
+          let data = {
+            email: userObject.email,
+            given_name: userObject.given_name,
+            family_name: userObject.family_name,
+            name: userObject.name,
+            picture: userObject.picture,
+            password: userObject.email,
+          };
+          console.log(data);
+          fetch("/accounts", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("Success:", data);
+            });
+        }
+      })
       history.push('/search')
     }
 

@@ -12,8 +12,14 @@ class PerformancesController < ApplicationController
     end
 
     def create
-        perfomance = Performance.create!(perfomance_params)
-        render json: perfomance, status: :created
+        post = Performance.create!(perfomance_params)
+        render json: post, status: :created
+    end
+
+    def destroy
+        post = find_performance
+        post.delete
+        head :no_content
     end
 
     private
@@ -23,7 +29,7 @@ class PerformancesController < ApplicationController
     end
 
     def perfomance_params
-        params.permit(:performance_url, :description)
+        params.permit(:performance_url, :description, :workTitle)
     end
 
     def render_not_found_response
