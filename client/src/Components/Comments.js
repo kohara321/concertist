@@ -3,6 +3,7 @@ import CommentCard from "./CommentCard";
 
 function Comments({work, userId, allComments}){
     const [comment, setComment] = useState("")
+    const [errors, setErrors] = useState("")
 
     // console.log(userId.id)
     function handleSubmit(e){
@@ -17,8 +18,17 @@ function Comments({work, userId, allComments}){
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
         })
-        .then(res => res.json())
-        .then(data => console.log("comment posted", data))
+        .then(res => {
+            if (res.ok) {
+              res.json()
+              .then(data => console.log("comment posted", data))
+            } else {
+              res.json()
+              .then((errorData) => setErrors(errorData.error));
+            }
+        })
+        // .then(res => res.json())
+        // .then(data => console.log("comment posted", data))
         setComment("")
     }
 
@@ -32,6 +42,7 @@ function Comments({work, userId, allComments}){
         )
     })
     console.log(commentInfo)
+    console.log(errors)
 
     return(
         <div>
