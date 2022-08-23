@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_15_175858) do
+ActiveRecord::Schema.define(version: 2022_08_12_172436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 2022_08_15_175858) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string "account_id"
-    t.string "performance_id"
+    t.integer "account_id"
+    t.integer "performance_id"
     t.string "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -37,9 +37,9 @@ ActiveRecord::Schema.define(version: 2022_08_15_175858) do
   create_table "performances", force: :cascade do |t|
     t.string "performance_url"
     t.text "description"
+    t.string "workTitle"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "workTitle"
   end
 
 end

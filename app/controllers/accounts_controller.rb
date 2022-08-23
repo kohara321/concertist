@@ -21,11 +21,6 @@ class AccountsController < ApplicationController
         render json: user, status: :created
     end
 
-    def new_user
-        user = Account.create!(account_params)
-        render json: user, status: :created
-    end
-
     private
 
     def find_account

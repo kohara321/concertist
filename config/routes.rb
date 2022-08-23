@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   get '/email', to: 'accounts#email'
-  post "/new_user", to: "accounts#new_user"
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

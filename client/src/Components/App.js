@@ -17,7 +17,9 @@ function App() {
   const [searchInput, setSearchInput] = useState("")
   const [songs, setSongs] = useState([])
   const [user, setUser] = useState({})
+  const [userId, setUserId] = useState([])
   const [loggedIn, setLoggedIn] = useState(false)
+  const [allComments, setAllComments] = useState([])
 
   useEffect(() => {
     let account = window.localStorage.getItem("USER_OBJ")
@@ -62,8 +64,19 @@ function App() {
       history.push('/search')
     }
 
-    console.log(user)
-    // console.log(loggedIn)
+    useEffect(() => {
+      fetch(`/email?email=${user.email}`)
+      .then(res => res.json())
+      .then(data => setUserId(data))
+    }, [user])
+
+    console.log(userId)
+
+    useEffect(() => {
+      fetch("/comments")
+      .then(res => res.json())
+      .then(data => setAllComments(data))
+    }, [])
   
     function handleSignOut(e){
       window.localStorage.setItem("USER_OBJ", JSON.stringify({}))
@@ -89,9 +102,9 @@ function App() {
 
   return (
     <div className="App">
-      {user && 
+      {/* {user && 
         <h2>{user.name}</h2>
-      }
+      } */}
       <NavBar loggedIn={loggedIn} handleSignOut={handleSignOut} />
       <Switch>
         <Route exact path="/">
@@ -102,10 +115,10 @@ function App() {
           <SongDetails songs={songs} />
         </Route>
         <Route path="/my_posts">
-          <Posts />
+          <Posts userId={userId} />
         </Route> 
         <Route path="/performances" >
-          <PerformancePage />
+          <PerformancePage userId={userId} allComments={allComments} />
         </Route>
         <Route path="/new_post" >
           <NewPerformance />
