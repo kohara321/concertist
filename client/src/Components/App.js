@@ -16,7 +16,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("mozart")
   const [searchInput, setSearchInput] = useState("")
   const [songs, setSongs] = useState([])
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState({id: 0, username: "Guest"})
   const [userId, setUserId] = useState([])
   const [loggedIn, setLoggedIn] = useState(false)
   const [allComments, setAllComments] = useState([])
