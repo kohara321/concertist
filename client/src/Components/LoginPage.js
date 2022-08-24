@@ -42,7 +42,7 @@ function Login({handleCallbackResponse, user}){
                 <button type="button" id="signup-btn" onClick={nav} >Sign Up</button>
             </div>
             <div id="signInDiv"></div>
-        {
+        {/* {
           Object.keys(user).length !== 0 &&
           <h3>Logged in as:</h3>
         }
@@ -51,7 +51,7 @@ function Login({handleCallbackResponse, user}){
           <img src={user.picture} alt=""/>
           <h3>{user.name}</h3>
         </div>
-        }
+        } */}
         </form>
         </>
     )

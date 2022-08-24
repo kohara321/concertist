@@ -24,7 +24,7 @@ class AccountsController < ApplicationController
     private
 
     def find_account
-        Account.find_by(id: params[:id])
+        Account.find(params[:id])
     end
  
     def find_email

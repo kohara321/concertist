@@ -16,10 +16,11 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("mozart")
   const [searchInput, setSearchInput] = useState("")
   const [songs, setSongs] = useState([])
-  const [user, setUser] = useState({id: 0, username: "Guest"})
+  const [user, setUser] = useState({})
   const [userId, setUserId] = useState([])
   const [loggedIn, setLoggedIn] = useState(false)
   const [allComments, setAllComments] = useState([])
+  const [errors, setErrors] = useState("")
 
   useEffect(() => {
     let account = window.localStorage.getItem("USER_OBJ")
@@ -32,8 +33,8 @@ function App() {
   function handleCallbackResponse(response) {
       let userObject = jwt_decode(response.credential);
       setUser(userObject)
-      document.getElementById("signInDiv").hidden = true
       window.localStorage.setItem("USER_OBJ", JSON.stringify(userObject))
+      document.getElementById("signInDiv").hidden = true
       window.localStorage.setItem("LOGIN_STATUS", true)
       setLoggedIn(true)
       
@@ -41,35 +42,46 @@ function App() {
       .then(res => res.json())
       .then((data) => {
         if (data === null) {
-          let data = {
-            email: userObject.email,
-            given_name: userObject.given_name,
-            family_name: userObject.family_name,
-            name: userObject.name,
-            picture: userObject.picture,
-            password: userObject.email,
-          };
-          console.log(data);
-          fetch("/accounts", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              console.log("Success:", data);
-            });
+          addUser()
         }
       })
       history.push('/search')
     }
+    const addUser = () => {
+      let data = {
+        email: user.email,
+        given_name: user.given_name,
+        family_name: user.family_name,
+        name: user.name,
+        picture: user.picture,
+        password: user.email,
+      }; 
+      fetch("/accounts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Success:", data);
+        });
+    }
+
+    console.log(user)
 
     useEffect(() => {
       fetch(`/email?email=${user.email}`)
-      .then(res => res.json())
-      .then(data => setUserId(data))
+      .then(res => {
+        if (res.ok) {
+          res.json()
+          .then(data => setUserId(data))
+        } else {
+          res.json()
+          .then((errorData) => setErrors(errorData.error));
+        }
+    })
     }, [user])
-
+    // console.log(errors)
     console.log(userId)
 
     useEffect(() => {
