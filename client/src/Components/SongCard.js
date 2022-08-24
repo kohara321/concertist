@@ -8,7 +8,7 @@ function SongCard({pieces}){
         let selectedCard = e.target.parentNode
         let workTitle = selectedCard.querySelector('#work-title').textContent
         window.localStorage.setItem("SELECTED_WORK", workTitle)
-        history.push('/performances')
+        history.push('/posts')
     }
 
     return(

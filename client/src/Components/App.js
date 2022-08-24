@@ -136,7 +136,7 @@ function App() {
         <Route path="/my_posts">
           <Posts userId={userId} />
         </Route> 
-        <Route path="/performances" >
+        <Route path="/posts" >
           <PerformancePage userId={userId} allComments={allComments} />
         </Route>
         <Route path="/new_post" >
