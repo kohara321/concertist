@@ -3,7 +3,7 @@ import CommentCard from "./CommentCard";
 
 function Comments({work, userId, allComments}){
     const [comment, setComment] = useState("")
-    const [errors, setErrors] = useState("")
+    const [errors, setErrors] = useState([])
 
     // console.log(userId.id)
     function handleSubmit(e){
@@ -41,8 +41,8 @@ function Comments({work, userId, allComments}){
             />
         )
     })
-    console.log(commentInfo)
-    console.log(errors)
+    // console.log(commentInfo)
+    console.log("comment", errors)
 
     return(
         <div>

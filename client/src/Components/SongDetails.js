@@ -5,7 +5,7 @@ function SongDetails({songs}){
     const songInfo = songs.map(song => {
         return(
             <SongCard
-                key={song.id}
+                key={song.work.title}
                 pieces={song}
             />
         )

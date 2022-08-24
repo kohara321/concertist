@@ -17,16 +17,18 @@ function App() {
   const [searchInput, setSearchInput] = useState("")
   const [songs, setSongs] = useState([])
   const [user, setUser] = useState({})
-  const [userId, setUserId] = useState([])
+  const [userId, setUserId] = useState({})
   const [loggedIn, setLoggedIn] = useState(false)
   const [allComments, setAllComments] = useState([])
-  const [errors, setErrors] = useState("")
+  const [errors, setErrors] = useState([])
 
   useEffect(() => {
-    let account = window.localStorage.getItem("USER_OBJ")
-    let status = window.localStorage.getItem("LOGIN_STATUS")
-    setUser(JSON.parse(account))
-    setLoggedIn(status)
+    const account = window.localStorage.getItem("USER_OBJ")
+    if (account) {
+      const status = window.localStorage.getItem("LOGIN_STATUS")
+      setUser(JSON.parse(account))
+      setLoggedIn(status)
+    }
   }, [])
 
   let history = useHistory();
@@ -70,18 +72,20 @@ function App() {
     console.log(user)
 
     useEffect(() => {
-      fetch(`/email?email=${user.email}`)
-      .then(res => {
-        if (res.ok) {
-          res.json()
-          .then(data => setUserId(data))
-        } else {
-          res.json()
-          .then((errorData) => setErrors(errorData.error));
-        }
-    })
+      if (user.email) {
+        fetch(`/email?email=${user.email}`)
+          .then(res => {
+            if (res.ok) {
+              res.json()
+              .then(data => setUserId(data))
+            } else {
+              res.json()
+              .then((errorData) => setErrors(errorData.error));
+            }
+          })
+      }
     }, [user])
-    // console.log(errors)
+    console.log(errors)
     console.log(userId)
 
     useEffect(() => {
@@ -110,6 +114,9 @@ function App() {
    const searchSubmit = (e) =>{
      e.preventDefault()
      setSearchTerm(searchInput)
+     if (searchInput === "" ) {
+      setSearchTerm("mozart")
+     }
    }
 
   return (

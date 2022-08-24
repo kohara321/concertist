@@ -33,6 +33,7 @@ function NewPerformance(){
         })
         history.push("/performances")
     }
+    console.log(errors)
 
     return(
         <div>
