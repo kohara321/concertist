@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import './newPerf.css'
 
 function NewPerformance(){
     const [perfURL, setPerfURL] = useState("")
@@ -39,17 +40,17 @@ function NewPerformance(){
 
     return(
         <div>
-            <form onSubmit={handleSubmit}>
-            <h1>New Performance for {workTitle}</h1>
+            <form id="newPerf-form" onSubmit={handleSubmit}>
+            <h1 id="newPerf-header">New Performance for {workTitle}</h1>
             <div className="form-group">
-                <input type="text" id="perf-URL" placeholder="Performance URL endpoint" value={perfURL} onChange={e => setPerfURL(e.target.value)} />
+                <input type="text" id="newPerf-URL" placeholder="Performance URL endpoint" value={perfURL} onChange={e => setPerfURL(e.target.value)} />
             </div>
             <div className="form-group">
-                <input type="text" id="description" placeholder="Add description" value={description} onChange={e => setDescription(e.target.value)} />
+                <input type="text" id="newPerf-description" placeholder="Add description" value={description} onChange={e => setDescription(e.target.value)} />
             </div>
             <ul style={{color: 'red'}}>{errors}</ul>
-            <div id="new-post-btns">
-                <button type="submit" id="new-post-btn">Post Performance</button>
+            <div id="newPerf-btns">
+                <button type="submit" id="newPerf-btn">Post Performance</button>
             </div>
             </form>
         </div>

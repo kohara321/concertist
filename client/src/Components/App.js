@@ -40,7 +40,7 @@ function App() {
       window.localStorage.setItem("LOGIN_STATUS", true)
       setLoggedIn(true)
       
-      fetch(`/email?email=${userObject.email}`)
+      fetch(`/email?email=${userObject?.email}`)
       .then(res => res.json())
       .then((data) => {
         if (data === null) {

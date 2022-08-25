@@ -5,6 +5,7 @@ import './comments.css';
 function Comments({work, userId, allComments}){
     const [comment, setComment] = useState("")
     const [errors, setErrors] = useState([])
+    console.log("comments", userId)
 
     function handleSubmit(e){
         e.preventDefault();
