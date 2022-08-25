@@ -31,7 +31,7 @@ function NewPerformance(){
               .then((errorData) => setErrors(errorData.error));
             }
         })
-        history.push("/performances")
+        history.push("/posts")
     }
     console.log(errors)
 

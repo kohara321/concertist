@@ -1,5 +1,6 @@
 //Component will not load on same page refresh
 import { useState, useEffect } from "react"
+import PerformCard from "./PerformCard"
 
 function Posts({userId}){
     const [perfComments, setPerfComments] = useState([])
@@ -15,6 +16,25 @@ function Posts({userId}){
     console.log(userId)
     console.log(perfComments)
 
+    const titles = userId.performances?.map(performance => performance.workTitle.split())|| []
+    const descriptions = userId.performances?.map(performance => performance.description.split())|| []
+    const sources = userId.performances?.map(performance => performance.performance_url.split()) || []
+    const comments = perfComments?.map(com => <> {com.comment} <br/> </> )|| []
+    console.log(titles)
+    console.log(descriptions)
+    console.log(sources)
+
+    const posts = userId.performances?.map(
+        (performance) => {
+            return (
+                <PerformCard 
+                    work={performance}
+                    userId={userId}
+                    allComments={performance.comments}
+                />
+            )
+        }
+    )
 
     if (!userId.performances) {
         return <h1>Loading Performances...</h1>;
@@ -22,12 +42,7 @@ function Posts({userId}){
 
     return(
         <div>
-            <h1>Your Performances</h1>
-            <h2>{userId.performances?.map(performance => performance.workTitle)}</h2>
-            <p>{userId.performances?.map(performance => performance.description)}</p>
-            <iframe width="560" height="315" src={`https://www.youtube.com/embed/${userId.performances?.map(performance => performance.performance_url)}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-            <h3>Comments: </h3>
-            <ul>{perfComments.map(com => <> {com.comment} <br/> </> )}</ul>
+            {posts}
         </div>
     )
 }

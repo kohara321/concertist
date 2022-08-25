@@ -7,12 +7,12 @@ class PerformancesController < ApplicationController
     end
 
     def show
-        perfomance = find_performance
-        render json: perfomance
+        performance = find_performance
+        render json: performance
     end
 
     def create
-        post = Performance.create!(perfomance_params)
+        post = Performance.create!(performance_params)
         render json: post, status: :created
     end
 
@@ -28,7 +28,7 @@ class PerformancesController < ApplicationController
         Performance.find_by(id: params[:id])
     end
 
-    def perfomance_params
+    def performance_params
         params.permit(:performance_url, :description, :workTitle)
     end
 

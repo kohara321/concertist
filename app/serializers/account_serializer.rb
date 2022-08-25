@@ -1,11 +1,16 @@
 class AccountSerializer < ActiveModel::Serializer
-  attributes :id, :email, :given_name, :family_name, :name, :picture, :password_digest, :performances
-
-  def performances
-    object.performances.map.uniq do |performances|
-      ::PerformanceSerializer.new(performances).attributes
+  attributes :id, :email, :given_name, :family_name, :name, :picture, :password_digest
+  attribute :performances do ||
+    object.performances.uniq.map do |performance| 
+      {
+        **performance.attributes,
+        comments: performance.comments.map do |comment| 
+          {
+            **comment.attributes,
+            account: object
+          }
+        end
+      }
     end
   end
-
-  has_many :comments
 end
