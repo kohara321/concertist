@@ -3,7 +3,6 @@
 function CommentCard({perfComments, work}){
     let perfId = JSON.parse(perfComments.performance_id)
     let comments = perfComments.comment
-    // console.log(perfComments)
     return(
         <div>
         {(() => {
