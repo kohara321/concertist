@@ -1,0 +1,40 @@
+#home-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#welcome {
+    font-size: 8vh;
+}
+
+#piano-img {
+    margin-top: 3vh;
+}
+
+#home-text {
+    font-size: 1.5rem;
+    margin-top: 3vh;
+}
+
+#home-btn{
+    display: inline-block;
+    width: 20%;
+    height: 3rem;
+    border: 0;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+#home-btn{
+    margin: 2rem 0 1rem 0;
+    border-radius: 20px;
+    border: solid #4f5250;
+}
+
+#home-btn:hover{
+    background-color: #3c3d40;
+    color: #ffed4a;
+    transition: 1s background ease;
+}

@@ -1,0 +1,25 @@
+#performance-piece {
+    margin: .5rem 0 0 .5rem;
+}
+
+#add-btn{
+    display: inline-block;
+    width: auto;
+    height: 2.5rem;
+    border: 0;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+#add-btn{
+    margin: .5rem 0 1rem .5rem;
+    border-radius: 5px;
+    border: solid #4f5250;
+}
+
+#add-btn:hover{
+    background-color: #3c3d40;
+    color: #ffed4a;
+    transition: 1s background ease;
+}

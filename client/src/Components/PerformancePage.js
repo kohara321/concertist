@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import PerformanceDetails from "./PerformanceDetails";
+import './performPage.css';
 
 function PerformancePage({userId, allComments}){
     const [workTitle, setWorkTitle] = useState(window.localStorage.getItem("SELECTED_WORK"))
@@ -11,6 +12,7 @@ function PerformancePage({userId, allComments}){
         .then(res => res.json())
         .then(data => setWorkObj(data.filter(work => work.workTitle === workTitle)))
     }, [workTitle])
+    console.log(workObj)
 
     let history = useHistory()
     function nav(){
@@ -20,7 +22,7 @@ function PerformancePage({userId, allComments}){
     return(
         <div id="performances">
             <h1 id="performance-piece">Currently Viewing: {workTitle}</h1>
-            <button id="add-btn" onClick={nav}>New Performance</button>
+            <button id="add-btn" onClick={nav}>Add Performance</button>
             <PerformanceDetails works={workObj} userId={userId} allComments={allComments} />
         </div>
     )

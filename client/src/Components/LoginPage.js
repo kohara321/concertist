@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useHistory} from "react-router-dom";
 
 function Login({handleCallbackResponse, user}){
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    // const [email, setEmail] = useState("")
+    // const [password, setPassword] = useState("")
     
       useEffect(() => {
         /* global google */
@@ -31,7 +31,7 @@ function Login({handleCallbackResponse, user}){
         <>
         <form id="login-form" onSubmit={handleSubmit}>
             <h1 id="login-header">Login to Your Account</h1>
-            <div className="form-group">
+            {/* <div className="form-group">
                 <input type="text" id="email" placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)} />
             </div>
             <div className="form-group">
@@ -40,7 +40,7 @@ function Login({handleCallbackResponse, user}){
             <div id="login-btns">
                 <button type="submit" id="login-btn">Login</button>
                 <button type="button" id="signup-btn" onClick={nav} >Sign Up</button>
-            </div>
+            </div> */}
             <div id="signInDiv"></div>
         {/* {
           Object.keys(user).length !== 0 &&

@@ -69,8 +69,7 @@ function App() {
           console.log("Success:", data);
         });
     }
-
-    console.log(user.email)
+    console.log(user)
 
     useEffect(() => {
       if (user.email) {

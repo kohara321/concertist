@@ -1,11 +1,11 @@
 import { useState } from "react"
 import CommentCard from "./CommentCard";
+import './comments.css';
 
 function Comments({work, userId, allComments}){
     const [comment, setComment] = useState("")
     const [errors, setErrors] = useState([])
 
-    // console.log(userId.id)
     function handleSubmit(e){
         e.preventDefault();
         const data = {
@@ -27,8 +27,6 @@ function Comments({work, userId, allComments}){
               .then((errorData) => setErrors(errorData.error));
             }
         })
-        // .then(res => res.json())
-        // .then(data => console.log("comment posted", data))
         setComment("")
     }
 
@@ -47,17 +45,11 @@ function Comments({work, userId, allComments}){
     return(
         <div>
             <h1 id="comment-header">Comments:</h1>
-            <form onSubmit={handleSubmit}>
-                <div id="comment-input">
-                    <input type="text" placeholder="Leave a comment" value={comment} onChange={e => setComment(e.target.value)} />
-                </div>
-                <div id="comment-btn">
-                    <button type="submit">Submit</button>
-                </div>
-                <div id="comments">
-                </div>
+            <form id="comment-form" onSubmit={handleSubmit}>
+                    <input id="comment-input" type="text" placeholder="Leave a comment" value={comment} onChange={e => setComment(e.target.value)} />
+                    <button id="comment-btn" type="submit">Submit</button>
             </form>
-            <ul>{commentInfo}</ul>
+            <ul id="box">{commentInfo}</ul>
         </div>
     )
 }

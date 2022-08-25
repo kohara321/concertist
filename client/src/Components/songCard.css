@@ -1,3 +1,47 @@
 #song-card{
-    border: 5px solid black;
+    border: 3px solid black;
+    width: 60%;
+    height: 30%;
+    margin: auto auto 1rem auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+#composer-name, #work-title, #work-info {
+    margin-top: .5rem;
+    margin-left: 1rem;
+}
+
+#composer-name {
+    font-size: 5vh;
+}
+
+#work-title {
+    font-size: 4vh;
+}
+
+#work-info {
+    font-size: 3vh;
+}
+
+#work-btn{
+    display: inline-block;
+    width: auto;
+    height: 3rem;
+    border: 0;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+#work-btn{
+    margin: 1rem 0 1rem 1rem;
+    border-radius: 15px;
+    border: solid #4f5250;
+}
+
+#work-btn:hover{
+    background-color: #3c3d40;
+    color: #ffed4a;
+    transition: 1s background ease;
 }

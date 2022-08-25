@@ -1,0 +1,48 @@
+#perf-card {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 3px solid black;
+    padding-bottom: 1rem;
+}
+
+#comments-box {
+    align-self: flex-start;
+    margin: auto auto auto 10rem;
+}
+
+#perf-title {
+    font-size: 5.5vh;
+}
+
+#perf-description {
+    font-size: 3vh;
+}
+
+#perf-video {
+    margin-top: 30px;
+}
+
+#delete-btn{
+    display: inline-block;
+    width: auto;
+    height: 1.5rem;
+    border: 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#delete-btn{
+    margin: .3rem 0 .2rem 0;
+    border-radius: 10px;
+    border: solid #4f5250;
+}
+
+#delete-btn:hover{
+    background-color: #3c3d40;
+    color: red;
+    transition: 1s background ease;
+}

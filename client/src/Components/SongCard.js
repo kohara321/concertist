@@ -13,10 +13,12 @@ function SongCard({pieces}){
 
     return(
         <div id="song-card">
-            <h1 id="composer-name">{pieces.composer.complete_name}</h1>
-            <h1 id="work-title">{pieces.work.title}</h1>
-            <h2 id="work-info">{pieces.composer.epoch +" - "+ pieces.work.genre}</h2>
-            <button id="work-btn" onClick={nav} >Performances</button>
+            <div>
+                <h1 id="composer-name">{pieces.composer.complete_name}</h1>
+                <h1 id="work-title">{pieces.work.title}</h1>
+                <h2 id="work-info">{pieces.composer.epoch +" - "+ pieces.work.genre}</h2>
+                <button id="work-btn" onClick={nav} >Performances</button>
+            </div>
             <br/>
             <img id="work-img" src={pieces.composer.portrait} alt={pieces.composer.complete_name + "image"} />
         </div>
