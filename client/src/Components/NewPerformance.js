@@ -10,7 +10,7 @@ function NewPerformance(){
     let history = useHistory()
     function handleSubmit(e){
         e.preventDefault();
-        fetch(`/performances`, {
+        fetch(`/api/performances`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
