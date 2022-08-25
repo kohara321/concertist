@@ -17,9 +17,11 @@ function NewPerformance(){
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-                performance_url: perfURL,
-                description: description,
-                workTitle: workTitle
+                performance: {
+                    performance_url: perfURL,
+                    description: description,
+                    workTitle: workTitle
+                }
             }),
         })
         .then(res => {
