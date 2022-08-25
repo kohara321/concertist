@@ -29,7 +29,7 @@ class PerformancesController < ApplicationController
     end
 
     def performance_params
-        params.permit(:performance_url, :description, :workTitle)
+        params.require(:performance).permit(:performance_url, :description, :workTitle)
     end
 
     def render_not_found_response
