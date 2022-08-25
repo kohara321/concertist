@@ -58,6 +58,7 @@ function App() {
         picture: user.picture,
         password: user.email,
       }; 
+      console.log(data)
       fetch("/accounts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -69,7 +70,7 @@ function App() {
         });
     }
 
-    console.log(user)
+    console.log(user.email)
 
     useEffect(() => {
       if (user.email) {
